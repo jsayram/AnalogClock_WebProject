@@ -72,5 +72,6 @@
 #minute,
 #second {
     transform-origin: 300px 300px;
-    transition: transform .5s ease-in-out;
+    /* below will prevent the clock hand from going back to 0 after going 360 creating a weird animation
+    /* transition: transform .5s ease-in-out; */
 }

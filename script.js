@@ -4,13 +4,27 @@ const MINUTEHAND = document.querySelector("#minute");
 const SECONDHAND = document.querySelector("#second");
 
 
-let hrPosition = 20;
-let minPosition = 130;
-let secPosition = 267;
+//function so we can call this to run
+function runTheClock() {
+    // set up a new date object
+    var date = new Date();
+    console.log(date);
+    let hr = date.getHours();
+    let min = date.getMinutes();
+    let sec = date.getSeconds();
+    console.log("Hour: " + hr + " Min: " + min + " sec: " + sec);
 
-//apply the numbers above as degrees
-HOURHAND.style.transform = "rotate(" + hrPosition + "deg)";
+    let hrPosition = (hr * 360 / 12) + (min * (360 / 60) / 12);
+    let minPosition = (min * 360 / 60) + (sec * (360 / 60) / 60);
+    let secPosition = sec * 360 / 60;
 
-MINUTEHAND.style.transform = "rotate(" + minPosition + "deg)";
+    //apply the numbers above as degrees
+    HOURHAND.style.transform = "rotate(" + hrPosition + "deg)";
 
-SECONDHAND.style.transform = "rotate(" + secPosition + "deg)";
+    MINUTEHAND.style.transform = "rotate(" + minPosition + "deg)";
+
+    SECONDHAND.style.transform = "rotate(" + secPosition + "deg)";
+}
+
+//this run the function every second , using the setInterval . gets a fixed time delay between each call
+var interval = setInterval(runTheClock, 1000); // every 1000 milliseconds is every second
